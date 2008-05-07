@@ -5,9 +5,9 @@
 <project>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.ryanberdeen</groupId>
-	<artifactId>bind-annotations</artifactId>
+	<artifactId>json-view</artifactId>
 	<packaging>jar</packaging>
-	<name>bind annotations</name>
+	<name>json view</name>
 	<version>0.1-SNAPSHOT</version>
 	<build>
 		<pluginManagement>
