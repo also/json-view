@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- $Id$ -->
+
+<xsd:schema xmlns="http://ry1.org/schema/json-view"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	targetNamespace="http://ry1.org/schema/json-view"
+	elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+	<xsd:import namespace="http://www.springframework.org/schema/beans" schemaLocation="http://www.springframework.org/schema/beans/spring-beans-2.0.xsd"/>
+
+	<xsd:element name="list">
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="listType">
+					<xsd:attribute name="id" use="required" type="xsd:string"/>
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:complexType name="listType">
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+			<xsd:element name="property" type="propertyType"/>
+			<xsd:element name="list" type="propertyType"/>
+		</xsd:choice>
+	</xsd:complexType>
+	
+	<xsd:complexType name="propertyType">
+		<xsd:complexContent>
+			<xsd:extension base="listType">
+				<xsd:sequence minOccurs="0">
+					<xsd:element name="transformer" type="transformerType"/>
+				</xsd:sequence>
+				<xsd:attribute name="name" use="optional" type="xsd:string"/>
+				<xsd:attribute name="target" use="optional" type="xsd:string"/>
+				<xsd:attribute name="ref" use="optional" type="xsd:string"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:complexType name="transformerType">
+		<xsd:sequence minOccurs="0">
+			<xsd:element ref="beans:bean"/>
+		</xsd:sequence>
+		<xsd:attribute name="ref" use="optional" type="xsd:string"/>
+		<xsd:attribute name="method" use="optional" type="xsd:string"/>
+	</xsd:complexType>
+
+</xsd:schema>
